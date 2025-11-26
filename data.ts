@@ -11,8 +11,14 @@ const createCommentQuestion = (id: string): Question => ({
 
 export const surveyData: SurveyData = {
   title: "DELNE実証実験アンケート",
-  subtitle: "フェーズ①：製品評価",
-  description: `本アンケートは複数ページあります。各ページ毎に回答をご記入ください。\n全てのページに回答が完了したらスタッフへお渡しください。\n\n【評価基準について】\n5段階評価の項目は、数字が大きいほど「良い／簡単／適切」という高評価になります。\n1：低い／悪い／難しい\n5：高い／良い／簡単`,
+  subtitle: "フェーズ②：実利用評価",
+  description: `本アンケートは複数ページあります。各ページ毎に回答をご記入ください。
+全てのページに回答が完了したらスタッフへお渡しください。
+
+【評価基準について】
+5段階評価の項目は、数字が大きいほど「良い／ポジティブ」な評価になります。
+1：低い／悪い／そう思わない
+5：高い／良い／そう思う`,
   dateField: true,
   nameField: true,
   sections: [
@@ -31,206 +37,143 @@ export const surveyData: SurveyData = {
     },
     {
       id: "s1",
-      title: "■システム操作性",
+      title: "■通話前の認知症者の様子",
       questions: [
         {
           id: "q1",
-          title: "1. 初期設定のしやすさ",
-          description: "最初の設定作業は簡単でしたか？",
+          title: "1. 認知症状態",
+          description: "認知症の進行状況はどの程度ですか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "難しい", max: "簡単" },
+          scaleLabels: { min: "重度", max: "軽度" },
           required: true
         },
         createCommentQuestion("q1"),
         {
           id: "q2",
-          title: "2. 電話通話の使いやすさ",
-          description: "電話での通話は使いやすかったですか？",
+          title: "2. サービス受容度",
+          description: "AI電話への関心や態度はどうですか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "使いにくい", max: "使いやすい" },
+          scaleLabels: { min: "嫌がっている/無関心", max: "楽しみにしている" },
           required: true
         },
         createCommentQuestion("q2"),
         {
           id: "q3",
-          title: "3. 管理画面の情報のみやすさ",
-          description: "管理画面の情報は見やすく整理されていますか？",
+          title: "3. 心理状態",
+          description: "通話前の気持ちは落ち着いていますか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "見にくい", max: "見やすい" },
+          scaleLabels: { min: "落ち着きがない/不安", max: "落ち着いている" },
           required: true
         },
-        createCommentQuestion("q3"),
+        createCommentQuestion("q3")
+      ]
+    },
+    {
+      id: "s2",
+      title: "■通話中の認知症者の様子",
+      questions: [
         {
           id: "q4",
-          title: "4. 管理画面の使いやすさ",
-          description: "管理画面の設定は使いやすいですか。設定項目の意味が直感的に理解できますか？",
+          title: "4. 表情・感情反応",
+          description: "通話中の表情や気持ちはどうでしたか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "使いにくい", max: "使いやすい" },
+          scaleLabels: { min: "ネガティブ/怒り/不安", max: "ポジティブ/笑顔/穏やか" },
           required: true
         },
         createCommentQuestion("q4"),
         {
           id: "q5",
-          title: "5. 通知(メール/SMS)の分かりやすさ",
-          description: "メールやSMSで届く通知の内容はすぐ理解できましたか？",
+          title: "5. 会話の成立度",
+          description: "スムーズにAIと会話ができていましたか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "分かりにくい", max: "分かりやすい" },
+          scaleLabels: { min: "成立していない", max: "スムーズに成立" },
           required: true
         },
         createCommentQuestion("q5"),
         {
           id: "q6",
-          title: "6. マニュアルの分かりやすさ",
-          description: "マニュアルは理解しやすいですか？",
+          title: "6. 家族認識状況",
+          description: "AIを本当の家族と思っている様子でしたか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "分かりにくい", max: "分かりやすい" },
+          scaleLabels: { min: "全く思っていない", max: "完全に信じている" },
           required: true
         },
         createCommentQuestion("q6"),
+        {
+          id: "q7",
+          title: "7. 混乱・ストレスの有無",
+          description: "戸惑いや不安を示していませんでしたか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "強い不安/混乱", max: "全くない" },
+          required: true
+        },
+        createCommentQuestion("q7")
       ]
     },
     {
-      id: "s2",
-      title: "■AI音声・会話品質の評価",
+      id: "s3",
+      title: "■通話後の認知症者の様子",
       questions: [
         {
-          id: "q7",
-          title: "7. 音声の明瞭さ",
-          description: "AIの声ははっきり聞き取れますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "聞き取れない", max: "はっきり聞こえる" },
-          required: true
-        },
-        createCommentQuestion("q7"),
-        {
           id: "q8",
-          title: "8. 音声認識の精度",
-          description: "AIは話した言葉を正しく聞き取っていますか？",
+          title: "8. 心理状態の変化",
+          description: "通話後の気持ちの変化は見られましたか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "正しくない", max: "正しい" },
+          scaleLabels: { min: "悪化した", max: "良くなった/穏やかになった" },
           required: true
         },
         createCommentQuestion("q8"),
         {
           id: "q9",
-          title: "9. 応答速度/間合いの適切さ",
-          description: "AIの返事が返ってくる速さや間の取り方は自然ですか？",
+          title: "9. 継続意向の表出",
+          description: "また話したいという様子が見られますか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "不自然", max: "自然" },
+          scaleLabels: { min: "拒否", max: "強く希望" },
           required: true
         },
         createCommentQuestion("q9"),
         {
           id: "q10",
-          title: "10. 会話の自然さ",
-          description: "人と話しているような自然な会話ですか？",
+          title: "10. その他変化",
+          description: "通話前と通話後で何か変化は見られましたか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "不自然", max: "自然" },
+          scaleLabels: { min: "悪い変化", max: "良い変化" },
           required: true
         },
-        createCommentQuestion("q10"),
+        createCommentQuestion("q10")
+      ]
+    },
+    {
+      id: "s4",
+      title: "■通話終了後の管理ページ内容評価",
+      questions: [
         {
           id: "q11",
-          title: "11. 話題内容の適切さ",
-          description: "AIが話す内容や話題の選び方は適切ですか？",
+          title: "11. 会話記録の分かりやすさ",
+          description: "管理ページでの会話履歴の内容は理解しやすく記録されていますか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "不適切", max: "適切" },
+          scaleLabels: { min: "分かりにくい", max: "分かりやすい" },
           required: true
         },
         createCommentQuestion("q11"),
         {
           id: "q12",
-          title: "12. 情報の正確さ",
-          description: "AIが会話で返す情報は正確でしたか？",
+          title: "12. 緊急度判定の適切さ",
+          description: "通話履歴の「緊急度」の判定は正しかったですか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "不正確", max: "正確" },
+          scaleLabels: { min: "正しくない", max: "正しい" },
           required: true
         },
         createCommentQuestion("q12"),
         {
           id: "q13",
-          title: "13. 音声応答失敗の発生頻度",
-          description: "AIが会話を返さず黙ってしまったことはどれくらいありましたか？",
+          title: "13. 情報の有用性",
+          description: "記録された情報は役に立ちますか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "頻繁にあった", max: "全くなかった" },
+          scaleLabels: { min: "役に立たない", max: "役に立つ" },
           required: true
         },
-        createCommentQuestion("q13"),
-        {
-          id: "q14",
-          title: "14. 声の再現度（見守り者の声）",
-          description: "AIの声は本人の声にどれくらい似ていますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "似ていない", max: "そっくり" },
-          required: true
-        },
-        createCommentQuestion("q14"),
-      ]
-    },
-    {
-      id: "s3",
-      title: "■認知症患者様への適合性評価",
-      questions: [
-        {
-          id: "q15",
-          title: "15. 認知症の方への配慮",
-          description: "AIの会話は認知症特有の困難に配慮した会話になっていますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "配慮がない", max: "配慮されている" },
-          required: true
-        },
-        createCommentQuestion("q15"),
-        {
-          id: "q16",
-          title: "16. 安全性（心理的負担の少なさ）",
-          description: "AIの会話は使用者に不安や混乱を与えない会話になっていますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "不安を与える", max: "安心できる" },
-          required: true
-        },
-        createCommentQuestion("q16"),
-        {
-          id: "q17",
-          title: "17. 実用性（日常ケアでの活用）",
-          description: "このサービスは実際の介護現場で認知症患者様相手に使えそうですか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "使えない", max: "使える" },
-          required: true
-        },
-        createCommentQuestion("q17"),
-        {
-          id: "q18",
-          title: "18. 家族の負担軽減への貢献",
-          description: "このサービスは介護する家族の助けになりそうですか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "助けにならない", max: "助けになる" },
-          required: true
-        },
-        createCommentQuestion("q18"),
-      ]
-    },
-    {
-      id: "s4",
-      title: "■緊急度判定機能の評価",
-      questions: [
-        {
-          id: "q19",
-          title: "19. 緊急時判定の適切性(緊急性の高い会話)",
-          description: "病気や苦痛などの会話を行った場合、「重要」「緊急」等が正しく表示されていますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "正しくない", max: "正しい" },
-          required: true
-        },
-        createCommentQuestion("q19"),
-        {
-          id: "q20",
-          title: "20. 緊急時判定の適切性(緊急性の低い日常会話)",
-          description: "日常会話の場合、誤って緊急と判定されていませんか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "誤判定が多い", max: "正しく判定" },
-          required: true
-        },
-        createCommentQuestion("q20"),
+        createCommentQuestion("q13")
       ]
     },
     {
@@ -238,99 +181,82 @@ export const surveyData: SurveyData = {
       title: "■総合評価",
       questions: [
         {
+          id: "q14",
+          title: "14. 認知症本人への効果への期待",
+          description: "このサービスを導入することで、認知症者の状態が改善しそうですか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "そう思わない", max: "そう思う" },
+          required: true
+        },
+        createCommentQuestion("q14"),
+        {
+          id: "q15",
+          title: "15. 見守り者自身への効果への期待",
+          description: "このサービスを導入することで、介護者の負担は軽減しそうですか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "そう思わない", max: "そう思う" },
+          required: true
+        },
+        createCommentQuestion("q15"),
+        {
+          id: "q16",
+          title: "16. 関係性への影響への期待",
+          description: "このサービスを導入することで、認知症者様との関係に変化が期待できますか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "期待できない", max: "良い変化が期待できる" },
+          required: true
+        },
+        createCommentQuestion("q16"),
+        {
+          id: "q17",
+          title: "17. サービス全体の満足度",
+          description: "サービス全体にどれくらい満足しましたか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "不満", max: "満足" },
+          required: true
+        },
+        createCommentQuestion("q17"),
+        {
+          id: "q18",
+          title: "18. 継続利用意向",
+          description: "実験終了後も使い続けたいですか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "使いたくない", max: "使い続けたい" },
+          required: true
+        },
+        createCommentQuestion("q18"),
+        {
+          id: "q19",
+          title: "19. 推奨意向（NPS）",
+          description: "このサービスを、他の家族にも勧めたいですか？",
+          type: QuestionType.RATING_5,
+          scaleLabels: { min: "勧めたくない", max: "勧めたい" },
+          required: true
+        },
+        createCommentQuestion("q19"),
+        {
+          id: "q20",
+          title: "20. 最優先改善点",
+          description: "改めて、本サービスで一番直してほしいところはどこですか？",
+          type: QuestionType.TEXT_LONG,
+          required: false
+        },
+        {
           id: "q21",
-          title: "21. 最初にデモを見たときの率直な印象",
-          description: "このサービスを利用した上での第一印象を自由にお聞かせください",
+          title: "21. 希望する追加機能",
+          description: "改めて、こんな機能があればいい、と思う機能について自由にお書きください",
           type: QuestionType.TEXT_LONG,
           required: false
         },
         {
           id: "q22",
-          title: "22. 予想と違った点",
-          description: "「AI電話サービス」と聞いて想像していたものと違う部分はありますか？",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
-        {
-          id: "q23",
-          title: "23. 認知症の方のQOL向上への貢献",
-          description: "認知症者の生活の質、感情状態が良くなりそうですか？",
+          title: "22. 適正価格感",
+          description: "本サービスを実際に使う場合、月額いくらなら妥当だと思いますか？",
           type: QuestionType.RATING_5,
-          scaleLabels: { min: "そう思わない", max: "そう思う" },
+          scaleLabels: { min: "安すぎる/価値がない", max: "妥当/価値がある" },
           required: true
         },
-        createCommentQuestion("q23"),
-        {
-          id: "q24",
-          title: "24. 家族の安心",
-          description: "このサービスを利用することで介護家族は安心できるようになりそうですか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "そう思わない", max: "そう思う" },
-          required: true
-        },
-        createCommentQuestion("q24"),
-        {
-          id: "q25",
-          title: "25. 職員の業務負担軽減",
-          description: "このサービスを利用することでスタッフの仕事が楽になりそうですか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "そう思わない", max: "そう思う" },
-          required: true
-        },
-        createCommentQuestion("q25"),
-        {
-          id: "q26",
-          title: "26. 認知症家族に導入する価値があるか",
-          description: "このサービスは認知症家族に必要だと思いますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "不要", max: "必要" },
-          required: true
-        },
-        createCommentQuestion("q26"),
-        {
-          id: "q27",
-          title: "27. 施設でも導入する価値があるか",
-          description: "このサービスは施設に必要だと思いますか？",
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "不要", max: "必要" },
-          required: true
-        },
-        createCommentQuestion("q27"),
-        {
-          id: "q28",
-          title: "28. 本人の声でない場合の予想",
-          description: "利用者(ご家族)以外の声(既存AI音声等)で答えた場合、どのような反応をされると思いますか？",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
-        {
-          id: "q29",
-          title: "29. 本人の声でない場合の適切な対応方針",
-          description: "上記のような反応が想定される場合、どのような運用をすれば安心して利用いただけると思いますか？",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
-        {
-          id: "q30",
-          title: "30. 懸念されるリスク",
-          description: "このサービスを利用することで、どのような問題が起きる心配がありますか？",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
-        {
-          id: "q31",
-          title: "31. 最優先で改善してほしい点",
-          description: "本サービスで一番直してほしいところはどこですか？",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
-        {
-          id: "q32",
-          title: "32. あったら便利だと思う機能",
-          description: "こんな機能があればいい、と思う機能について自由にお書きください",
-          type: QuestionType.TEXT_LONG,
-          required: false
-        },
+        createCommentQuestion("q22")
       ]
     }
   ]
