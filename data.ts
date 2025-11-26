@@ -29,7 +29,7 @@ export const surveyData: SurveyData = {
       questions: [
         {
           id: "attr_1",
-          title: "あなたの属性を教えてください",
+          title: "あなたの立場について、該当するものを下記の中からお選びください",
           type: QuestionType.SINGLE_CHOICE,
           options: ["職員", "ケアマネージャ", "介護家族", "その他"],
           required: true
