@@ -252,7 +252,7 @@ export const surveyData: SurveyData = {
         {
           id: "q22",
           title: "22. 適正価格感",
-          description: "本サービスを実際に使う場合、月額いくらなら妥当だと思いますか？",
+          description: `本サービスを実際に使う場合、月額いくらなら妥当だと思いますか？`,
           type: QuestionType.RATING_5,
           scaleLabels: { min: "安すぎる/価値がない", max: "妥当/価値がある" },
           required: true
