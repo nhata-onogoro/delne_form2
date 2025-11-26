@@ -253,8 +253,14 @@ export const surveyData: SurveyData = {
           id: "q22",
           title: "22. 適正価格感",
           description: `本サービスを実際に使う場合、月額いくらなら妥当だと思いますか？`,
-          type: QuestionType.RATING_5,
-          scaleLabels: { min: "安すぎる/価値がない", max: "妥当/価値がある" },
+          type: QuestionType.SINGLE_CHOICE,
+          options: [
+            "1：3000円以下",
+            "2：3000円～5000円",
+            "3：5000円～7000円",
+            "4：7000円～10000円",
+            "5：10000円以上"
+          ],
           required: true
         },
         createCommentQuestion("q22")
