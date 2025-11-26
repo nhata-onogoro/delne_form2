@@ -34,7 +34,7 @@ export const SurveySheet: React.FC<SurveySheetProps> = ({ data }) => {
           )}
           {data.nameField && (
             <div className="flex items-end gap-2 w-64">
-              <span className="font-bold">お名前:</span>
+              <span className="font-bold">お名前(※任意):</span>
               <div className="flex-1 border-b border-black"></div>
             </div>
           )}
